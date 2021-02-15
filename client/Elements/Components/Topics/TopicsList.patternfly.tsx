@@ -9,9 +9,10 @@ import {
   Divider,
   Pagination,
   Toolbar,
-  Title,
+  Page,
   ToolbarContent,
   ToolbarItem,
+  PageSection,
 } from '@patternfly/react-core';
 import {
   Table,
@@ -120,9 +121,8 @@ export const TopicsList: React.FunctionComponent<ITopicList> = ({
 
   return (
     <>
-      <Title headingLevel='h2' size='lg'>
-        Topics
-      </Title>
+     <Page>
+       <PageSection>
       {deleteModal && (
         <DeleteTopics
           setDeleteModal={setDeleteModal}
@@ -181,10 +181,11 @@ export const TopicsList: React.FunctionComponent<ITopicList> = ({
             <TableHeader />
             <TableBody />
           </Table>
-        </Card>
+          </Card>
       )}
-      {rowData.length < 1 && search.length > 1 && <EmptySearch />}
+      {rowData.length < 1 && search.length > 1 && <EmptySearch/>}
       {rowData.length > 1 && (
+        <Card>
         <Pagination
           itemCount={rowData.length}
           perPage={perPage}
@@ -194,7 +195,11 @@ export const TopicsList: React.FunctionComponent<ITopicList> = ({
           onPerPageSelect={onPerPageSelect}
           offset={0}
         />
+        </Card>
       )}
+       
+      </PageSection>
+      </Page>
     </>
   );
 };

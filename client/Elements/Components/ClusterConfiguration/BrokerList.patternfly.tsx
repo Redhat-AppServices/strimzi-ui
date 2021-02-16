@@ -49,9 +49,10 @@ export const BrokerList: React.FunctionComponent = () => {
     { title: 'Status' },
   ];
 
+  //To be removed after the integration.
   const tableRows = [
-    { cells: ['1', 1, 'r-1', 'ready'] },
-    { cells: ['2', 2, 'r-2', 'configuring'] },
+    { cells: ['Broker-1', 1, 'rack-1', 'ready'] },
+    { cells: ['Broker-2', 2, 'rack-2', 'configuring'] },
   ];
 
   return (

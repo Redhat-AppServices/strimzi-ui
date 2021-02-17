@@ -362,7 +362,7 @@ export const TopicDetailView: React.FunctionComponent<TopicViewDetailProps> = ({
               unit={'ms'}
             />
 
-            <Divider />
+            <Divider className='section-margin'/>
 
             <TextContent className='section-margin'>
               <Text component={TextVariants.h2} tabIndex={-1} id='delete'>

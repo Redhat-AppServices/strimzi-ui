@@ -18,6 +18,7 @@ import { Home } from '../Panels/Home';
 import CreateTopic from '../Panels/Topics/CreateView.patternfly';
 import TopicDetail from 'Panels/Topics/DetailView.patternfly';
 import UpdateTopicView from '../Panels/Topics/UpdateView.patternfly';
+import { AppLayout } from 'Elements/Components/AppLayout/AppLayout.patternfly';
 
 init(); //Bootstrap i18next support
 ReactDOM.render(
@@ -25,19 +26,21 @@ ReactDOM.render(
     <ConfigFeatureFlagProvider>
       <LoggingProvider>
         <FeatureFlag flag={'client.Pages.PlaceholderHome'}>
-          <Router>
-            <Switch>
-              <Route path='/' component={Home} exact />
-              <Route path='/topics' component={Topics} exact />
-              <Route path='/topic/:topicName' component={TopicDetail} exact />
-              <Route path='/topics/create' component={CreateTopic} exact />
-              <Route
-                path='/topics/update/:name'
-                component={UpdateTopicView}
-                exact
-              />
-            </Switch>
-          </Router>
+          <AppLayout>
+            <Router>
+              <Switch>
+                <Route path='/' component={Home} exact />
+                <Route path='/topics' component={Topics} exact />
+                <Route path='/topic/:topicName' component={TopicDetail} exact />
+                <Route path='/topics/create' component={CreateTopic} exact />
+                <Route
+                  path='/topics/update/:name'
+                  component={UpdateTopicView}
+                  exact
+                />
+              </Switch>
+            </Router>
+          </AppLayout>
         </FeatureFlag>
       </LoggingProvider>
     </ConfigFeatureFlagProvider>

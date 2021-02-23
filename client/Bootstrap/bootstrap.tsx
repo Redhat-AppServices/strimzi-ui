@@ -19,7 +19,8 @@ import CreateTopic from '../Panels/Topics/CreateView.patternfly';
 import TopicDetail from 'Panels/Topics/DetailView.patternfly';
 import UpdateTopicView from '../Panels/Topics/UpdateView.patternfly';
 import { TopicContextProvider } from 'Contexts/Topic';
-import {ConsumerGroupsView} from "..//Panels/ConsumerGroups/ConsumerGroupsView.patternfly"
+import { ConsumerGroupsView } from '..//Panels/ConsumerGroups/ConsumerGroupsView.patternfly';
+import BrokerListView from '../Panels/Brokers/BrokerListView.patternfly';
 
 init(); //Bootstrap i18next support
 ReactDOM.render(
@@ -39,7 +40,12 @@ ReactDOM.render(
                   component={UpdateTopicView}
                   exact
                 />
-                <Route path='/consumerGroups' component={ConsumerGroupsView} exact />
+                <Route
+                  path='/consumerGroups'
+                  component={ConsumerGroupsView}
+                  exact
+                />
+                <Route path='/brokers' component={BrokerListView} exact />
               </Switch>
             </Router>
           </FeatureFlag>

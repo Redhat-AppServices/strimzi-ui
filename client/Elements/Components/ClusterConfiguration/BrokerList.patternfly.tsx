@@ -17,6 +17,7 @@ import {
   TableHeader,
   TableVariant,
 } from '@patternfly/react-table';
+import { BrokerStatus } from './BrokerStatus.patternfly';
 
 export interface IBroker {
   brokerId: string;
@@ -51,53 +52,60 @@ export const BrokerList: React.FunctionComponent = () => {
 
   //To be removed after the integration.
   const tableRows = [
-    { cells: ['Broker-1', 1, 'rack-1', 'ready'] },
-    { cells: ['Broker-2', 2, 'rack-2', 'configuring'] },
+    {
+      cells: ['Broker-1' , 1, 'rack-1', <BrokerStatus key='1' status='ready' />],
+    },
+    {
+      cells: [
+        'Broker-2',
+        2,
+        'rack-2',
+        <BrokerStatus key='2' status='configuring' />,
+      ],
+    },
   ];
 
   return (
-    <>
-      <Card>
-        <Toolbar>
-          <ToolbarContent>
-            <ToolbarItem variant='pagination'>
-              <Pagination
-                itemCount={tableRows.length}
-                perPage={perPage}
-                page={page}
-                onSetPage={onSetPage}
-                widgetId='pagination-options-menu-top'
-                onPerPageSelect={onPerPageSelect}
-              />
-            </ToolbarItem>
-          </ToolbarContent>
-        </Toolbar>
-        <Divider />
+    <Card>
+      <Toolbar>
+        <ToolbarContent>
+          <ToolbarItem variant='pagination'>
+            <Pagination
+              itemCount={tableRows.length}
+              perPage={perPage}
+              page={page}
+              onSetPage={onSetPage}
+              widgetId='pagination-options-menu-top'
+              onPerPageSelect={onPerPageSelect}
+            />
+          </ToolbarItem>
+        </ToolbarContent>
+      </Toolbar>
+      <Divider />
 
-        <Table
-          aria-label='Compact Table'
-          variant={TableVariant.compact}
-          cells={tableColumns}
-          rows={
-            page != 1
-              ? tableRows.slice(offset, offset + perPage)
-              : tableRows.slice(0, perPage)
-          }
-        >
-          <TableHeader />
-          <TableBody />
-        </Table>
-        {tableRows.length > 1 && (
-          <Pagination
-            itemCount={tableRows.length}
-            perPage={perPage}
-            page={page}
-            onSetPage={onSetPage}
-            widgetId='pagination-options-menu-bottom'
-            onPerPageSelect={onPerPageSelect}
-          />
-        )}
-      </Card>
-    </>
+      <Table
+        aria-label='Compact Table'
+        variant={TableVariant.compact}
+        cells={tableColumns}
+        rows={
+          page != 1
+            ? tableRows.slice(offset, offset + perPage)
+            : tableRows.slice(0, perPage)
+        }
+      >
+        <TableHeader />
+        <TableBody />
+      </Table>
+      {tableRows.length > 1 && (
+        <Pagination
+          itemCount={tableRows.length}
+          perPage={perPage}
+          page={page}
+          onSetPage={onSetPage}
+          widgetId='pagination-options-menu-bottom'
+          onPerPageSelect={onPerPageSelect}
+        />
+      )}
+    </Card>
   );
 };
